@@ -1,12 +1,11 @@
 package frc.robot.subsystems;
 
-import com.kauailabs.navx.frc.AHRS;
-import com.revrobotics.CANSparkLowLevel;
-import com.revrobotics.CANSparkMax;
+import com.revrobotics.spark.SparkLowLevel;
+import com.revrobotics.spark.SparkMax;
 import com.spikes2212.command.drivetrains.TankDrivetrain;
 import com.spikes2212.dashboard.RootNamespace;
 import com.spikes2212.util.MotorControllerGroup;
-import edu.wpi.first.wpilibj.SerialPort;
+import com.studica.frc.AHRS;
 import frc.robot.RobotMap;
 
 import java.util.function.Supplier;
@@ -16,9 +15,10 @@ public class Drivetrain extends TankDrivetrain {
     public static final double RIGHT_CORRECTION = 1; //todo change according to *your* drivetrain deviation
     public static final double LEFT_CORRECTION = 0.9; //todo change according to *your* drivetrain deviation
 
-    private final AHRS gyro = new AHRS(SerialPort.Port.kMXP); //todo change to *your* gyro type
+    private final AHRS gyro = new AHRS(AHRS.NavXComType.kMXP_SPI); //todo change to *your* gyro type
 
     public static final double DRIVE_SPEED = 0.15;
+    public static final double TURN_SPEED = 0.15;
     public static final double DEFAULT_ROTATE_SPEED = 0.04;
     public static final double DEFAULT_ROTATE_TOLERANCE = 6;
 
@@ -37,12 +37,12 @@ public class Drivetrain extends TankDrivetrain {
     public static Drivetrain getInstance() {
         if (instance == null) {
             instance = new Drivetrain(new MotorControllerGroup(
-                    new CANSparkMax(RobotMap.CAN.DRIVETRAIN_LEFT_SPARK_MAX_1, CANSparkLowLevel.MotorType.kBrushless),
-                    new CANSparkMax(RobotMap.CAN.DRIVETRAIN_LEFT_SPARK_MAX_2, CANSparkLowLevel.MotorType.kBrushless)
+                    new SparkMax(RobotMap.CAN.DRIVETRAIN_LEFT_SPARK_MAX_1, SparkLowLevel.MotorType.kBrushless),
+                    new SparkMax(RobotMap.CAN.DRIVETRAIN_LEFT_SPARK_MAX_2, SparkLowLevel.MotorType.kBrushless)
             ),
                     new MotorControllerGroup(
-                            new CANSparkMax(RobotMap.CAN.DRIVETRAIN_RIGHT_SPARK_MAX_1, CANSparkLowLevel.MotorType.kBrushless),
-                            new CANSparkMax(RobotMap.CAN.DRIVETRAIN_RIGHT_SPARK_MAX_2, CANSparkLowLevel.MotorType.kBrushless)
+                            new SparkMax(RobotMap.CAN.DRIVETRAIN_RIGHT_SPARK_MAX_1, SparkLowLevel.MotorType.kBrushless),
+                            new SparkMax(RobotMap.CAN.DRIVETRAIN_RIGHT_SPARK_MAX_2, SparkLowLevel.MotorType.kBrushless)
                     )
             );
         }
