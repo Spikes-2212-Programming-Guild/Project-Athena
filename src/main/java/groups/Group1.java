@@ -18,17 +18,16 @@ public class Group1 extends ProgramBase {
 
     @Override
     public void writeProgram() {
+        moveForwardInSeconds(3); //todo remove this line and start coding
+        turnRightInSeconds(2); //todo remove this line and start coding
+        moveForwardInSeconds(1.5);
+        turnRightInSeconds(1.5);
         moveForwardInSeconds(2);
-        turnRightInSeconds(0.9);
-        moveForwardInSeconds(2.3);
-        turnRightInSeconds(0.9);
-        moveForwardInSeconds(2);
-        turnLeftInSeconds(0.9);
-        moveForwardInSeconds(2.1);
-        turnLeftInSeconds(0.9);
-        moveForwardInSeconds(4);
-        turnLeftInSeconds(0.9);
-        moveForwardInSeconds(6);
+        turnLeftInSeconds(1.5);
+        moveForwardInSeconds(2.5);
+        turnLeftInSeconds(1.5);
+
+
     }
 }
 
