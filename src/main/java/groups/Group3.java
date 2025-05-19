@@ -22,10 +22,10 @@ public class Group3 extends ProgramBase {
         moveForwardInSeconds(3);//todo remove this line and start coding
         turnRightInSeconds(1); //todo remove this line and start coding
         moveForwardInSeconds(2);
-        turnRightInSeconds(0.5);
+        turnRightInSeconds(0.75);
         moveForwardInSeconds(2.5);
         turnLeftInSeconds(1);
-        moveForwardInSeconds(5);
+        moveForwardInSeconds(4);
         turnLeftInSeconds(1);
         moveForwardInSeconds(4);
         turnLeftInSeconds(1);
