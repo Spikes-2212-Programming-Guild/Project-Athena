@@ -20,12 +20,12 @@ public class Group1 extends ProgramBase {
     public void writeProgram() {
 
         moveForwardInSeconds(2);
-        turnRightInSeconds(0.83);
-        moveForwardInSeconds(6);
-        turnLeftInSeconds(0.83);
-        moveForwardInSeconds(1);
-        turnLeftInSeconds(0.83);
-        moveForwardInSeconds(6);
+        turnRightInDegrees(90);
+        moveForwardInSeconds(4);
+        turnLeftInDegrees(90);
+        moveForwardInSeconds(2);
+        turnLeftInDegrees(90);
+        moveForwardInSeconds(4);
+
     }
 }
-
