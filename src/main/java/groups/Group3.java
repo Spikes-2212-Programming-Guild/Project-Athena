@@ -20,11 +20,11 @@ public class Group3 extends ProgramBase {
     @Override
     public void writeProgram() {
         moveForwardInSeconds(2); //todo remove this line and start coding
-        turnRightInSeconds(3); //todo remove this line and start coding
+        turnRightInSeconds(1); //todo remove this line and start coding
         moveForwardInSeconds(3);
-        turnLeftInSeconds(3);
+        turnLeftInSeconds(1);
         moveForwardInSeconds(1);
-        turnLeftInSeconds(3);
+        turnLeftInSeconds(1);
         moveForwardInSeconds(5);
     }
 }
