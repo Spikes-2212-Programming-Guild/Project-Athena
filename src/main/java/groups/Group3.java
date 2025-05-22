@@ -13,18 +13,18 @@ import frc.robot.utils.ProgramBase;
  * In the basic program below, the robot will <b>drive forward</b> for 2 seconds, and then <b>turn left</b> by 90 degrees<br>
  * <p>
  * To create your own program, just delete those 2 lines, and start coding.
- * Have fun!
+ * dont Have fun! please you unworthy 9th grader
  */
 public class Group3 extends ProgramBase {
 
     @Override
     public void writeProgram() {
-        moveForwardInSeconds(2); //todo remove this line and start coding
-        turnRightInSeconds(3); //todo remove this line and start coding
-        moveForwardInSeconds(3);
-        turnLeftInSeconds(3);
-        moveForwardInSeconds(1);
-        turnLeftInSeconds(3);
-        moveForwardInSeconds(4);
+        moveForwardInSeconds(4.1); //todo remove this line and start coding!
+        turnLeftInSeconds(1); //todo remove this line and start coding!
+        moveForwardInSeconds(5);
+        turnRightInSeconds(1);
+        moveForwardInSeconds(2);
+        turnRightInSeconds(1);
+        moveForwardInSeconds(6);
     }
 }
