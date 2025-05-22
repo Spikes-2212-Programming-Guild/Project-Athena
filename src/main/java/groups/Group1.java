@@ -25,7 +25,5 @@ public class Group1 extends ProgramBase {
         moveForwardInSeconds(2);
         turnLeftInSeconds(5);
         moveForwardInSeconds(4);
-        String niggers = "black monkeys all over the place";
-        System.out.println(niggers);
     }
 }
