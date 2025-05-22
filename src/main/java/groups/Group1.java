@@ -20,8 +20,8 @@ public class Group1 extends ProgramBase {
     public void writeProgram() {
         moveForwardInSeconds(2.4); //todo remove this line and start coding
         turnRightInSeconds(0.9); //todo remove this line and start coding
-        moveForwardInSeconds(1.9);
-        turnRightInSeconds(1.15);
+        moveForwardInSeconds(2);
+        turnRightInSeconds(0.85);
         moveForwardInSeconds(3);
         turnLeftInSeconds(1.1);
         moveForwardInSeconds(4.2);
