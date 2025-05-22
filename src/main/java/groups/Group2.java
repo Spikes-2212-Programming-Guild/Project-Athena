@@ -1,6 +1,5 @@
 package groups;
 
-import frc.robot.commands.TurnInAngle;
 import frc.robot.utils.ProgramBase;
 
 /**
@@ -18,18 +17,13 @@ import frc.robot.utils.ProgramBase;
 public class Group2 extends ProgramBase {
 
     @Override
-    public void writeProgram(){
-        moveForwardInSeconds(3); //todo remove this line and start coding
-        turnRightInSeconds(0.9); // todo remove this line and start coding//
-        moveForwardInSeconds(2.3);
-        turnRightInSeconds(0.8);
-        moveForwardInSeconds(2.4);
-        turnLeftInSeconds(0.9);
-        moveForwardInSeconds(3);
-        turnLeftInSeconds(0.9);
+    public void writeProgram() {
         moveForwardInSeconds(4);
-        turnLeftInSeconds(0.8);
-        moveForwardInSeconds(9);
+        turnRightInSeconds(3);
+        moveForwardInSeconds(5);
+        turnLeftInSeconds(3);
+        turnLeftInSeconds(3);
+        moveForwardInSeconds(6);
 
 
     }

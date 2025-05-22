@@ -4,8 +4,8 @@
     <bytecodeTargetLevel target="17" />
   </component>
   <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-XDstringConcat=inline" />
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Project-Athena.main" options="--add-modules java.base" />
       <module name="Project_CodeMonkey_0.1.main" options="--add-modules java.base" />
     </option>
   </component>
