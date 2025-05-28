@@ -15,7 +15,7 @@ import frc.robot.utils.ProgramBase;
  * To create your own program, just delete those 2 lines, and start coding.
  * Have fun!
  */
-public class Group2 extends ProgramBase {
+public class Group8 extends ProgramBase {
 
     @Override
     public void writeProgram() {
