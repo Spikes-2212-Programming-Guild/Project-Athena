@@ -18,7 +18,7 @@ public class Group1 extends ProgramBase {
 
     @Override
     public void writeProgram() {
-        moveForwardInSeconds(2.7); //todo remove this line and start coding
+        moveForwardInSeconds(2.4); //todo remove this line and start coding
         turnRightInSeconds(0.8); //todo remove this line and start coding
         moveForwardInSeconds(4);
         turnLeftInSeconds(0.8);
