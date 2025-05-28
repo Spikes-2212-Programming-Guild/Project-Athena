@@ -24,7 +24,7 @@ public class Group2 extends ProgramBase {
         moveForwardInSeconds(4);
         turnLeftInSeconds(0.9);
         moveForwardInSeconds(1);
-        turnLeftInSeconds(0.9);
+        turnLeftInSeconds(1.5);
         moveForwardInSeconds(4);
 
     }
