@@ -22,10 +22,10 @@ public class Group2 extends ProgramBase {
         moveForwardInSeconds(2.5);
         turnRightInSeconds(0.9);
         moveForwardInSeconds(4);
-        turnLeftInSeconds(0.9);
-        moveForwardInSeconds(1);
-        turnLeftInSeconds(1.5);
-        moveForwardInSeconds(4);
+        turnLeftInSeconds(0.85);
+        moveForwardInSeconds(2);
+        turnLeftInSeconds(1.7);
+        moveForwardInSeconds(6);
 
     }
 
