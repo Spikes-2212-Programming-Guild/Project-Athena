@@ -23,7 +23,7 @@ public class Group1 extends ProgramBase {
         moveForwardInSeconds(4);
         turnLeftInSeconds(0.8);
         moveForwardInSeconds(1.99);
-        turnLeftInSeconds(0.8);
+        turnLeftInSeconds(1.3);
         moveForwardInSeconds(6);
 
     }
