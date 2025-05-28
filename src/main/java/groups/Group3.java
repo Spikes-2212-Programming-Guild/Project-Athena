@@ -21,7 +21,7 @@ public class Group3 extends ProgramBase {
     public void writeProgram() {
         moveForwardInSeconds(3);
         turnLeftInSeconds(3);
-        moveForwardInSeconds(7);
+        moveForwardInSeconds(4);
         turnRightInSeconds(3);
         moveForwardInSeconds(3);
         turnLeftInSeconds(3);
