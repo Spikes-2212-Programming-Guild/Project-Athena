@@ -22,7 +22,7 @@ public class Group1 extends ProgramBase {
         turnRightInSeconds(0.8); //todo remove this line and start coding
         moveForwardInSeconds(4);
         turnLeftInSeconds(0.8);
-        moveForwardInSeconds(1.3);
+        moveForwardInSeconds(1.99);
         turnLeftInSeconds(0.8);
         moveForwardInSeconds(6);
 
