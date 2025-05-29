@@ -21,11 +21,13 @@ public class Group2 extends ProgramBase {
     public void writeProgram() {
         moveForwardInSeconds(1.35); //todo remove this line and start coding
         turnRightInSeconds(0.88); //todo remove this line and start coding
-        moveForwardInSeconds(9);
-        turnLeftInSeconds(0.88);
+        moveForwardInSeconds(3);
+        turnLeftInSeconds(0.2);
         moveForwardInSeconds(4);
-        turnLeftInSeconds(0.88);
-        moveForwardInSeconds(30);
+        turnLeftInSeconds(0.9);
+        moveForwardInSeconds(3);
+        turnLeftInSeconds(0.84);
+        moveForwardInSeconds(20);
     }
 }
 
