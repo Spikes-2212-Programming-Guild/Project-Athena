@@ -30,11 +30,11 @@ public abstract class ProgramBase extends SequentialCommandGroup {
     }
 
     protected void turnLeftInSeconds(double seconds) {
-        addCommands(new DriveArcade(drivetrain, 0, -Drivetrain.TURN_SPEED).withTimeout(seconds));
+        addCommands(new DriveArcade(drivetrain, 0, Drivetrain.TURN_SPEED).withTimeout(seconds));
     }
 
     protected void turnRightInSeconds(double seconds) {
-        addCommands(new DriveArcade(drivetrain, 0, Drivetrain.TURN_SPEED).withTimeout(seconds));
+        addCommands(new DriveArcade(drivetrain, 0, -Drivetrain.TURN_SPEED).withTimeout(seconds));
     }
 
     public abstract void writeProgram();

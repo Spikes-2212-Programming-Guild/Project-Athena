@@ -11,8 +11,6 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.utils.ProgramBase;
 import groups.*;
 
-import javax.swing.*;
-
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -78,7 +76,7 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         Drivetrain.getInstance().resetGyro();
-        ProgramBase program = new Group1();
+        ProgramBase program = new Group3();
         program.writeProgram();
         program.schedule();
     }
