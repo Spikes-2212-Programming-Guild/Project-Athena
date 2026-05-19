@@ -10,9 +10,11 @@ public class RobotMap {
 
     public interface CAN {
 
-        int DRIVETRAIN_LEFT_SPARK_MAX_1 = 3;
-        int DRIVETRAIN_LEFT_SPARK_MAX_2 = 2;
-        int DRIVETRAIN_RIGHT_SPARK_MAX_1 = 13;
-        int DRIVETRAIN_RIGHT_SPARK_MAX_2 = 18;
+        int DRIVETRAIN_LEFT_SPARK_MAX_1 = 19;
+        int DRIVETRAIN_LEFT_SPARK_MAX_2 = 30;
+        int DRIVETRAIN_RIGHT_SPARK_MAX_1 = 11;
+        int DRIVETRAIN_RIGHT_SPARK_MAX_2 = 8;
+
+        int GYRO = -1;
     }
 }

@@ -1,6 +1,6 @@
 package frc.robot.commands;
 
-import com.spikes2212.command.drivetrains.commands.DriveArcade;
+import com.spikes2212.command.drivetrains.tankdrivetrains.commands.DriveArcade;
 import frc.robot.subsystems.Drivetrain;
 
 import java.util.function.Supplier;

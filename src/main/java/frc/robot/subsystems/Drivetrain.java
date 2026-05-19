@@ -1,11 +1,11 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.hardware.Pigeon2;
 import com.revrobotics.spark.SparkLowLevel;
 import com.revrobotics.spark.SparkMax;
-import com.spikes2212.command.drivetrains.TankDrivetrain;
+import com.spikes2212.command.drivetrains.tankdrivetrains.TankDrivetrain;
 import com.spikes2212.dashboard.RootNamespace;
 import com.spikes2212.util.MotorControllerGroup;
-import com.studica.frc.AHRS;
 import frc.robot.RobotMap;
 
 import java.util.function.Supplier;
@@ -15,7 +15,7 @@ public class Drivetrain extends TankDrivetrain {
     public static final double RIGHT_CORRECTION = 1; //todo change according to *your* drivetrain deviation
     public static final double LEFT_CORRECTION = 0.9; //todo change according to *your* drivetrain deviation
 
-    private final AHRS gyro = new AHRS(AHRS.NavXComType.kMXP_SPI); //todo change to *your* gyro type
+    private final Pigeon2 gyro = new Pigeon2(RobotMap.CAN.GYRO); //todo change to *your* gyro type
 
     public static final double DRIVE_SPEED = 0.15;
     public static final double TURN_SPEED = 0.15;
@@ -51,6 +51,7 @@ public class Drivetrain extends TankDrivetrain {
 
     private Drivetrain(MotorControllerGroup leftMotors, MotorControllerGroup rightMotors) {
         super(leftMotors, rightMotors);
+        leftMotors.setInverted(true);
         namespace.putNumber("gyro angle", this::getAngle);
     }
 
@@ -59,7 +60,7 @@ public class Drivetrain extends TankDrivetrain {
     }
 
     public double getAngle() {
-        double angle = gyro.getAngle() % 360;
+        double angle = gyro.getYaw().getValueAsDouble() % 360;
         if (angle > 180) angle -= 360;
         if (angle < -180) angle += 360;
         return angle;
