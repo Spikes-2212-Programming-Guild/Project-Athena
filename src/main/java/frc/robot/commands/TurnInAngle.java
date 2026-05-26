@@ -25,13 +25,13 @@ public class TurnInAngle extends DriveArcade {
 
     @Override
     public void initialize() {
-        drivetrain.resetGyro();
-        double currentAngle = drivetrain.getAngle();
-        wantedAngle = currentAngle + angle;
+//        drivetrain.resetGyro();
+//        double currentAngle = drivetrain.getAngle();
+//        wantedAngle = currentAngle + angle;
     }
 
-    @Override
-    public boolean isFinished() {
-        return Math.abs(wantedAngle - drivetrain.getAngle()) < Drivetrain.rotateTolerance.get();
-    }
+//    @Override
+//    public boolean isFinished() {
+//        return Math.abs(wantedAngle - drivetrain.getAngle()) < Drivetrain.rotateTolerance.get();
+//    }
 }
