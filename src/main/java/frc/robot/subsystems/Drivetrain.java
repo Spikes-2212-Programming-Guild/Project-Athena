@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.revrobotics.spark.SparkLowLevel;
 import com.revrobotics.spark.SparkMax;
@@ -15,7 +16,7 @@ public class Drivetrain extends TankDrivetrain {
     public static final double RIGHT_CORRECTION = 1; //todo change according to *your* drivetrain deviation
     public static final double LEFT_CORRECTION = 0.9; //todo change according to *your* drivetrain deviation
 
-    private final Pigeon2 gyro = new Pigeon2(RobotMap.CAN.GYRO); //todo change to *your* gyro type
+//    private final Pigeon2 gyro = new Pigeon2(RobotMap.CAN.GYRO); //todo change to *your* gyro type
 
     public static final double DRIVE_SPEED = 0.15;
     public static final double TURN_SPEED = 0.15;
@@ -37,12 +38,12 @@ public class Drivetrain extends TankDrivetrain {
     public static Drivetrain getInstance() {
         if (instance == null) {
             instance = new Drivetrain(new MotorControllerGroup(
-                    new SparkMax(RobotMap.CAN.DRIVETRAIN_LEFT_SPARK_MAX_1, SparkLowLevel.MotorType.kBrushless),
-                    new SparkMax(RobotMap.CAN.DRIVETRAIN_LEFT_SPARK_MAX_2, SparkLowLevel.MotorType.kBrushless)
+                    new WPI_TalonSRX(RobotMap.CAN.DRIVETRAIN_LEFT_SPARK_MAX_1),
+                    new WPI_TalonSRX(RobotMap.CAN.DRIVETRAIN_LEFT_SPARK_MAX_2)
             ),
                     new MotorControllerGroup(
-                            new SparkMax(RobotMap.CAN.DRIVETRAIN_RIGHT_SPARK_MAX_1, SparkLowLevel.MotorType.kBrushless),
-                            new SparkMax(RobotMap.CAN.DRIVETRAIN_RIGHT_SPARK_MAX_2, SparkLowLevel.MotorType.kBrushless)
+                            new WPI_TalonSRX(RobotMap.CAN.DRIVETRAIN_RIGHT_SPARK_MAX_1),
+                            new WPI_TalonSRX(RobotMap.CAN.DRIVETRAIN_RIGHT_SPARK_MAX_2)
                     )
             );
         }
@@ -51,18 +52,18 @@ public class Drivetrain extends TankDrivetrain {
 
     private Drivetrain(MotorControllerGroup leftMotors, MotorControllerGroup rightMotors) {
         super(leftMotors, rightMotors);
-        leftMotors.setInverted(true);
-        namespace.putNumber("gyro angle", this::getAngle);
+//        leftMotors.setInverted(true);
+//        namespace.putNumber("gyro angle", this::getAngle);
     }
 
-    public void resetGyro() {
-        gyro.reset();
-    }
+//    public void resetGyro() {
+//        gyro.reset();
+//    }
 
-    public double getAngle() {
-        double angle = gyro.getYaw().getValueAsDouble() % 360;
-        if (angle > 180) angle -= 360;
-        if (angle < -180) angle += 360;
-        return angle;
-    }
+//    public double getAngle() {
+//        double angle = gyro.getYaw().getValueAsDouble() % 360;
+//        if (angle > 180) angle -= 360;
+//        if (angle < -180) angle += 360;
+//        return angle;
+//    }
 }

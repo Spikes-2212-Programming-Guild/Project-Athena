@@ -1,14 +1,13 @@
 package groups;
 
-import frc.robot.commands.TurnInAngle;
 import frc.robot.utils.ProgramBase;
 
 /**
  * <H2>Here you should write your program</H2>you can use the methods: <br>
  * <p>{@link  #moveForwardInSeconds(double)} <br>
  * {@link  #moveBackwardInSeconds(double)} <br>
- * {@link  #turnLeftInDegrees(double)} <br>
- * {@link  #turnRightInDegrees(double)} <br></p>
+ * {@link  #turnLeftInSeconds(double)} <br>
+ * {@link  #turnRightInSeconds(double)}  <br></p>
  * <p>
  * In the basic program below, the robot will <b>drive forward</b> for 2 seconds, and then <b>turn left</b> by 90 degrees<br>
  * <p>
@@ -19,19 +18,7 @@ public class Group3 extends ProgramBase {
 
     @Override
     public void writeProgram() {
-        moveForwardInSeconds(4);
-        turnLeftInSeconds(3);
-        moveForwardInSeconds(4);
-        turnLeftInSeconds(3);
-        moveBackwardInSeconds(4);
-        turnLeftInSeconds(3);
-        moveForwardInSeconds(2);
-        turnLeftInSeconds(4);
-        moveBackwardInSeconds(3);
-        turnLeftInSeconds(3);
-        moveBackwardInSeconds(2);
-        turnRightInSeconds(3);
-        moveBackwardInSeconds(6);
-
+        moveForwardInSeconds(2); //todo remove this line and start coding
+        turnRightInSeconds(3); //todo remove this line and start coding
     }
 }
