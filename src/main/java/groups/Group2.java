@@ -4,8 +4,8 @@ import frc.robot.utils.ProgramBase;
 
 /**
  * <H2>Here you should write your program</H2>you can use the methods: <br>
- * <p>{@link  #moveForwardInSeconds(double)} <br>
- * {@link  #moveBackwardInSeconds(double)} <br>
+ * <p>{@link  #driveForwardInSeconds(double)} <br>
+ * {@link  #driveBackwardsInSeconds(double)} <br>
  * {@link  #turnLeftInSeconds(double)} <br>
  * {@link  #turnRightInSeconds(double)}  <br></p>
  * <p>
@@ -18,14 +18,6 @@ public class Group2 extends ProgramBase {
 
     @Override
     public void writeProgram() {
-      moveForwardInSeconds(3);
-        turnRightInSeconds(2);
-        turnLeftInSeconds(2);
-        moveForwardInSeconds(8);
-        turnLeftInSeconds(2);
-        moveForwardInSeconds(3);
-        turnLeftInSeconds(3);
-        moveForwardInSeconds(7);
 
     }
 }

@@ -1,69 +1,92 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix6.hardware.Pigeon2;
+
 import com.revrobotics.spark.SparkLowLevel;
-import com.revrobotics.spark.SparkMax;
-import com.spikes2212.command.drivetrains.tankdrivetrains.TankDrivetrain;
+import com.revrobotics.spark.config.SparkBaseConfig;
+import com.spikes2212.command.DashboardedSubsystem;
+import com.spikes2212.dashboard.Namespace;
 import com.spikes2212.dashboard.RootNamespace;
-import com.spikes2212.util.MotorControllerGroup;
+import com.spikes2212.util.smartmotorcontrollers.SparkWrapper;
 import frc.robot.RobotMap;
 
 import java.util.function.Supplier;
 
-public class Drivetrain extends TankDrivetrain {
+public class Drivetrain extends DashboardedSubsystem {
 
-    public static final double RIGHT_CORRECTION = 1; //todo change according to *your* drivetrain deviation
-    public static final double LEFT_CORRECTION = 0.9; //todo change according to *your* drivetrain deviation
+    public static final Namespace namespace = new RootNamespace("tank");
 
-//    private final Pigeon2 gyro = new Pigeon2(RobotMap.CAN.GYRO); //todo change to *your* gyro type
+    public static final Supplier<Double> DRIVE_SPEED = namespace.addConstantDouble("drive speed", 0.3);
+    public static final Supplier<Double> TURN_SPEED = namespace.addConstantDouble("turn speed", 0.3);
 
-    public static final double DRIVE_SPEED = 0.15;
-    public static final double TURN_SPEED = 0.15;
-    public static final double DEFAULT_ROTATE_SPEED = 0.04;
-    public static final double DEFAULT_ROTATE_TOLERANCE = 6;
+    private static final double BATTERY_VOLTAGE = 12;
+    private static final int CURRENT_LIMIT = 40;
+
+    private final SparkWrapper leftMaster;
+    private final SparkWrapper leftSlave;
+    private final SparkWrapper rightMaster;
+    private final SparkWrapper rightSlave;
 
     private static Drivetrain instance;
 
-    private static final RootNamespace rootNamespace = new RootNamespace("drivetrain");
-
-    /**
-     * One side of the robot is faster than the other. To solve this we slow down the fast side.
-     */
-    private static final Supplier<Double> rightCorrection = rootNamespace.addConstantDouble("right correction", RIGHT_CORRECTION);
-    private static final Supplier<Double> leftCorrection = rootNamespace.addConstantDouble("left correction", LEFT_CORRECTION);
-    public static final Supplier<Double> rotateSpeed = rootNamespace.addConstantDouble("rotate speed", DEFAULT_ROTATE_SPEED);
-    public static final Supplier<Double> rotateTolerance = rootNamespace.addConstantDouble("rotate tolerance", DEFAULT_ROTATE_TOLERANCE);
-
     public static Drivetrain getInstance() {
         if (instance == null) {
-            instance = new Drivetrain(new MotorControllerGroup(
-                    new WPI_TalonSRX(RobotMap.CAN.DRIVETRAIN_LEFT_SPARK_MAX_1),
-                    new WPI_TalonSRX(RobotMap.CAN.DRIVETRAIN_LEFT_SPARK_MAX_2)
-            ),
-                    new MotorControllerGroup(
-                            new WPI_TalonSRX(RobotMap.CAN.DRIVETRAIN_RIGHT_SPARK_MAX_1),
-                            new WPI_TalonSRX(RobotMap.CAN.DRIVETRAIN_RIGHT_SPARK_MAX_2)
-                    )
-            );
+            SparkWrapper leftMaster = SparkWrapper.createSparkMax(
+                    RobotMap.CAN.DRIVETRAIN_LEFT_MASTER, SparkLowLevel.MotorType.kBrushless);
+            SparkWrapper leftSlave = SparkWrapper.createSparkMax(
+                    RobotMap.CAN.DRIVETRAIN_LEFT_SLAVE, SparkLowLevel.MotorType.kBrushless);
+
+            SparkWrapper rightMaster = SparkWrapper.createSparkMax(
+                    RobotMap.CAN.DRIVETRAIN_RIGHT_MASTER, SparkLowLevel.MotorType.kBrushless);
+            SparkWrapper rightSlave = SparkWrapper.createSparkMax(
+                    RobotMap.CAN.DRIVETRAIN_RIGHT_SLAVE, SparkLowLevel.MotorType.kBrushless);
+
+            instance = new Drivetrain(namespace, leftMaster, leftSlave, rightMaster, rightSlave);
         }
         return instance;
     }
 
-    private Drivetrain(MotorControllerGroup leftMotors, MotorControllerGroup rightMotors) {
-        super(leftMotors, rightMotors);
-//        leftMotors.setInverted(true);
-//        namespace.putNumber("gyro angle", this::getAngle);
+    private Drivetrain(Namespace namespace, SparkWrapper leftMaster, SparkWrapper leftSlave,
+                       SparkWrapper rightMaster, SparkWrapper rightSlave) {
+        super(namespace);
+        this.leftMaster = leftMaster;
+        this.leftSlave = leftSlave;
+        this.rightMaster = rightMaster;
+        this.rightSlave = rightSlave;
+        configureMotors();
+        configureDashboard();
     }
 
-//    public void resetGyro() {
-//        gyro.reset();
-//    }
+    public void drive(double leftSpeed, double rightSpeed) {
+        leftMaster.set(leftSpeed);
+        rightMaster.set(-rightSpeed);
+    }
 
-//    public double getAngle() {
-//        double angle = gyro.getYaw().getValueAsDouble() % 360;
-//        if (angle > 180) angle -= 360;
-//        if (angle < -180) angle += 360;
-//        return angle;
-//    }
+    public void stop() {
+        leftMaster.stopMotor();
+        leftSlave.stopMotor();
+        rightMaster.stopMotor();
+        rightSlave.stopMotor();
+    }
+
+    private void configureMotors() {
+        configureDriveMotor(leftMaster);
+        configureDriveMotor(leftSlave);
+        configureDriveMotor(rightMaster);
+        configureDriveMotor(rightSlave);
+        leftSlave.follow(leftMaster);
+        rightSlave.follow(rightMaster);
+    }
+
+    private void configureDriveMotor(SparkWrapper spark) {
+        spark.restoreFactoryDefaults();
+        spark.setIdleMode(SparkBaseConfig.IdleMode.kCoast);
+        spark.applyConfiguration(spark.getSparkConfiguration().smartCurrentLimit(CURRENT_LIMIT));
+        spark.applyConfiguration(spark.getSparkConfiguration().voltageCompensation(BATTERY_VOLTAGE));
+        spark.setInverted(false);
+        spark.resetPosition();
+    }
+
+    @Override
+    public void configureDashboard() {
+    }
 }

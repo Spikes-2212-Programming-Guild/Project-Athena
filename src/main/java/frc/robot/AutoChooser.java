@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 import java.util.HashSet;
 
@@ -26,7 +27,7 @@ public class AutoChooser extends SendableChooser<Command> {
      * instances of the same class, numbers will also be added to differentiate between the names.</p>
      *
      * @param defaultOption the default command this {@link SendableChooser} will use as the default option
-     * @param options the commands that will be added to this {@link SendableChooser} other than the default command
+     * @param options       the commands that will be added to this {@link SendableChooser} other than the default command
      */
     public AutoChooser(Command defaultOption, Command... options) {
         String defaultName = defaultOption.getClass().getSimpleName();
@@ -42,16 +43,16 @@ public class AutoChooser extends SendableChooser<Command> {
      * option, and the rest of the options will be parsed as following: every even index (0,2,4,...) will be a command
      * and every odd index (1,3,5,...) will be used as the name for the previous command.
      *
-     * @param defaultOption the default command this {@link SendableChooser} will use as the default option
+     * @param defaultOption     the default command this {@link SendableChooser} will use as the default option
      * @param defaultOptionName the name for the default command
-     * @param options the rest of the options, where every even index is a command to be added and every odd index is
-     *               the name for the previously mentioned command
+     * @param options           the rest of the options, where every even index is a command to be added and every odd index is
+     *                          the name for the previously mentioned command
      */
     public AutoChooser(Command defaultOption, String defaultOptionName, Object... options) {
         setDefaultOption(defaultOptionName, defaultOption);
         Command command;
         String name;
-        for (int i = 0; i < options.length - options.length % 2; i+=2) {
+        for (int i = 0; i < options.length - options.length % 2; i += 2) {
             if (options[i] instanceof Command) {
                 command = (Command) options[i];
             } else {
@@ -86,8 +87,8 @@ public class AutoChooser extends SendableChooser<Command> {
      * Schedules the selected command and closes this {@link SendableChooser}.
      */
     public void schedule() {
-        getSelected().schedule();
-        close();
+        CommandScheduler.getInstance().schedule(getSelected());
+        close(); // ?
     }
 
     private boolean addName(String name) {

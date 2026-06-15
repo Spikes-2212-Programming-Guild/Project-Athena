@@ -1,8 +1,7 @@
 package frc.robot.utils;
 
-import com.spikes2212.command.drivetrains.tankdrivetrains.commands.DriveArcade;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.TurnInAngle;
+import frc.robot.commands.CurvatureDrive;
 import frc.robot.subsystems.Drivetrain;
 
 /**
@@ -13,28 +12,28 @@ public abstract class ProgramBase extends SequentialCommandGroup {
 
     private final Drivetrain drivetrain = Drivetrain.getInstance();
 
-    protected void moveForwardInSeconds(double seconds) {
-        addCommands(new DriveArcade(drivetrain, Drivetrain.DRIVE_SPEED, 0).withTimeout(seconds));
+    protected void driveForwardInSeconds(double seconds) {
+        addCommands(new CurvatureDrive(
+                drivetrain, Drivetrain.DRIVE_SPEED, () -> 0.0, () -> false, () -> false
+        ).withTimeout(seconds));
     }
 
-    protected void moveBackwardInSeconds(double seconds) {
-        addCommands(new DriveArcade(drivetrain, -Drivetrain.DRIVE_SPEED, 0).withTimeout(seconds));
+    protected void driveBackwardsInSeconds(double seconds) {
+        addCommands(new CurvatureDrive(
+                drivetrain, () -> -Drivetrain.DRIVE_SPEED.get(), () -> 0.0, () -> false, () -> false
+        ).withTimeout(seconds));
     }
-
-//    protected void turnLeftInDegrees(double angle) {
-//        addCommands(new TurnInAngle(drivetrain, -angle, true));
-//    }
-//
-//    protected void turnRightInDegrees(double angle) {
-//        addCommands(new TurnInAngle(drivetrain, angle, false));
-//    }
 
     protected void turnLeftInSeconds(double seconds) {
-        addCommands(new DriveArcade(drivetrain, 0, Drivetrain.TURN_SPEED).withTimeout(seconds));
+        addCommands(new CurvatureDrive(
+                drivetrain, () -> 0.0, Drivetrain.TURN_SPEED, () -> false, () -> false
+        ).withTimeout(seconds));
     }
 
     protected void turnRightInSeconds(double seconds) {
-        addCommands(new DriveArcade(drivetrain, 0, -Drivetrain.TURN_SPEED).withTimeout(seconds));
+        addCommands(new CurvatureDrive(
+                drivetrain, () -> 0.0, () -> -Drivetrain.TURN_SPEED.get(), () -> false, () -> false
+        ).withTimeout(seconds));
     }
 
     public abstract void writeProgram();
