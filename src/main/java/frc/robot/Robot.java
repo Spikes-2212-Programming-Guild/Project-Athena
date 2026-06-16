@@ -6,32 +6,37 @@ package frc.robot;
 
 import com.spikes2212.dashboard.RootNamespace;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import groups.*;
+import frc.robot.utils.ProgramBase;
+import groups.Group1;
+import groups.Group2;
+import groups.Group3;
+import groups.Group4;
+
+import java.util.function.Supplier;
 
 public class Robot extends TimedRobot {
 
-    private AutoChooser chooser;
+    private SendableChooser<Supplier<Command>> autoChooser;
     private final RootNamespace namespace = new RootNamespace("athena");
 
     @Override
     public void robotInit() {
-        Group1 g1 = new Group1();
-        Group2 g2 = new Group2();
-        Group3 g3 = new Group3();
-        Group4 g4 = new Group4();
-        Group5 g5 = new Group5();
-        Group6 g6 = new Group6();
 
-        chooser = new AutoChooser(
-                g1, "Group 1",
-                g2, "Group 2",
-                g3, "Group 3",
-                g4, "Group 4",
-                g5, "Group 5",
-                g6, "Group 6"
-        );
-        namespace.putData("athena chooser", chooser);
+        autoChooser = new SendableChooser<>();
+        autoChooser.addOption("Group 1", () -> compile(new Group1()));
+        autoChooser.addOption("Group 2", () -> compile(new Group2()));
+        autoChooser.addOption("Group 3", () -> compile(new Group3()));
+        autoChooser.addOption("Group 4", () -> compile(new Group4()));
+
+        namespace.putData("chooser", autoChooser);
+    }
+
+    private ProgramBase compile(ProgramBase programBase) {
+        programBase.writeProgram();
+        return programBase;
     }
 
     @Override
@@ -53,10 +58,10 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
-        chooser.schedule();
-//        ProgramBase program = new Group1();
-//        program.writeProgram();
-//        CommandScheduler.getInstance().schedule(program);
+        Command auto = autoChooser.getSelected().get();
+        if (auto != null) {
+            CommandScheduler.getInstance().schedule(auto);
+        }
     }
 
     /**

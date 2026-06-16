@@ -14,25 +14,25 @@ public abstract class ProgramBase extends SequentialCommandGroup {
 
     protected void driveForwardInSeconds(double seconds) {
         addCommands(new CurvatureDrive(
-                drivetrain, Drivetrain.DRIVE_SPEED, () -> 0.0, () -> false, () -> false
+                drivetrain, () -> Drivetrain.DRIVE_SPEED, () -> 0.0, () -> true, () -> false
         ).withTimeout(seconds));
     }
 
     protected void driveBackwardsInSeconds(double seconds) {
         addCommands(new CurvatureDrive(
-                drivetrain, () -> -Drivetrain.DRIVE_SPEED.get(), () -> 0.0, () -> false, () -> false
+                drivetrain, () -> -Drivetrain.DRIVE_SPEED, () -> 0.0, () -> true, () -> false
         ).withTimeout(seconds));
     }
 
     protected void turnLeftInSeconds(double seconds) {
         addCommands(new CurvatureDrive(
-                drivetrain, () -> 0.0, Drivetrain.TURN_SPEED, () -> false, () -> false
+                drivetrain, () -> 0.0, () -> Drivetrain.TURN_SPEED, () -> true, () -> false
         ).withTimeout(seconds));
     }
 
     protected void turnRightInSeconds(double seconds) {
         addCommands(new CurvatureDrive(
-                drivetrain, () -> 0.0, () -> -Drivetrain.TURN_SPEED.get(), () -> false, () -> false
+                drivetrain, () -> 0.0, () -> -Drivetrain.TURN_SPEED, () -> true, () -> false
         ).withTimeout(seconds));
     }
 

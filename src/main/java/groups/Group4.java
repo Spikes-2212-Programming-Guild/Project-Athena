@@ -18,6 +18,6 @@ public class Group4 extends ProgramBase {
 
     @Override
     public void writeProgram() {
-
+        turnRightInSeconds(1);
     }
 }

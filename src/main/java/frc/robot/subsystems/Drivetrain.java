@@ -15,8 +15,8 @@ public class Drivetrain extends DashboardedSubsystem {
 
     public static final Namespace namespace = new RootNamespace("tank");
 
-    public static final Supplier<Double> DRIVE_SPEED = namespace.addConstantDouble("drive speed", 0.3);
-    public static final Supplier<Double> TURN_SPEED = namespace.addConstantDouble("turn speed", 0.3);
+    public static final double DRIVE_SPEED = 0.1;
+    public static final double TURN_SPEED = 0.1;
 
     private static final double BATTERY_VOLTAGE = 12;
     private static final int CURRENT_LIMIT = 40;

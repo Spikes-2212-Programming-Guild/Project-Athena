@@ -18,6 +18,6 @@ public class Group3 extends ProgramBase {
 
     @Override
     public void writeProgram() {
-
+        turnLeftInSeconds(0.5);
     }
 }
